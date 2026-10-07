@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mırra Kafe - Eşsiz Kahve ve Lezzet Deneyimi</title>
+    <title>Mırra Kafe - Eşsiz Lezzet Durağı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4a3525;
-            --secondary: #8c6d53;
-            --accent: #c29b61;
-            --bg-light: #fdfbf7;
-            --text-dark: #2c221e;
-            --white: #ffffff;
+            --primary: #2c221e;
+            --secondary: #6f4e37;
+            --accent: #d4a373;
+            --bg-light: #fefae0;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -20,13 +21,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
         /* Navbar */
@@ -37,20 +37,21 @@
             width: 100%;
             background: rgba(44, 34, 30, 0.95);
             backdrop-filter: blur(10px);
-            color: var(--white);
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 20px 60px;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            letter-spacing: 1px;
             color: var(--accent);
+            letter-spacing: 1px;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -59,194 +60,251 @@
             gap: 30px;
         }
 
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
+        .nav-links button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
             font-weight: 500;
         }
 
-        .nav-links a:hover {
+        .nav-links button:hover, .nav-links button.active {
             color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        header {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+        /* Sayfa Yönetim Alanı (Cool Geçişler İçin) */
+        .page-container {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding: 40px 20px 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 1. ANASAYFA */
+        .hero {
+            height: calc(100vh - 100px);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--white);
+            color: white;
+            border-radius: 20px;
+            margin: 20px;
             padding: 0 20px;
         }
 
-        header h1 {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
             color: var(--accent);
-            animation: fadeInDown 1s ease-in-out;
+            letter-spacing: 2px;
         }
 
-        header p {
-            font-size: 1.4rem;
-            max-width: 600px;
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
             margin-bottom: 30px;
-            animation: fadeInUp 1s ease-in-out;
         }
 
         .btn {
             background-color: var(--accent);
-            color: var(--text-dark);
-            padding: 12px 30px;
+            color: var(--primary);
+            padding: 14px 35px;
             border-radius: 30px;
-            text-decoration: none;
+            border: none;
             font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(194, 155, 97, 0.4);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, c 0.4);
         }
 
         .btn:hover {
-            background-color: #d4ac71;
-            transform: translateY(-3px);
+            background-color: #e9edc9;
+            transform: scale(1.05);
         }
 
-        /* Container */
-        .container {
-            max-width: 1100px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-
+        /* 2. MENÜ SAYFASI */
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 2.8rem;
             color: var(--primary);
+            margin-bottom: 40px;
             position: relative;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 3px;
+            width: 80px;
+            height: 4px;
             background-color: var(--accent);
             margin: 10px auto 0;
             border-radius: 2px;
         }
 
-        /* Menu Grid */
-        .menu-category {
-            margin-bottom: 60px;
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .menu-category h3 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 25px;
-            border-bottom: 2px solid #eae3dc;
-            padding-bottom: 10px;
+        .tab-btn {
+            background: #e3d5ca;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--secondary);
+            color: white;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
-        .menu-card {
-            background: var(--white);
+        .menu-item {
+            background: var(--card-bg);
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid var(--accent);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: var(--transition);
+            border-top: 4px solid var(--secondary);
         }
 
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        .menu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
-        .menu-card-header {
+        .menu-item-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .menu-card h4 {
-            font-size: 1.2rem;
+        .menu-item h3 {
             color: var(--primary);
+            font-size: 1.3rem;
         }
 
         .price {
+            color: var(--secondary);
             font-weight: bold;
-            color: var(--accent);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        .menu-card p {
+        .menu-item p {
             color: #666;
             font-size: 0.95rem;
         }
 
-        /* About Section */
-        .about-section {
-            background-color: #f4ede4;
-            padding: 80px 20px;
+        .category-content {
+            display: none;
+        }
+
+        .category-content.active {
+            display: grid;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* 3. HAKKIMIZDA SAYFASI (Detaylı) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* 4. İLETİŞİM SAYFASI */
+        .contact-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             text-align: center;
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .contact-box h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
         }
 
-        .about-content p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.8;
+        .contact-info {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: #444;
+        }
+
+        .contact-info i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
         footer {
-            background-color: var(--text-dark);
-            color: var(--white);
+            background-color: var(--primary);
+            color: white;
             text-align: center;
-            padding: 40px 20px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .social-icons a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: var(--accent);
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding: 30px;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -254,102 +312,130 @@
 
     <!-- Navbar -->
     <nav>
-        <div class="logo"><i class="fa-solid fa-mug-hot"></i> Mırra Kafe</div>
+        <div class="logo" onclick="switchPage('home')"><i class="fa-solid fa-mug-hot"></i> Mırra Kafe</div>
         <ul class="nav-links">
-            <li><a href="#home">Ana Sayfa</a></li>
-            <li><a href="#menu">Menü</a></li>
-            <li><a href="#about">Hakkımızda</a></li>
-            <li><a href="#contact">İletişim</a></li>
+            <li><button onclick="switchPage('home')" id="nav-home" class="active">Ana Sayfa</button></li>
+            <li><button onclick="switchPage('menu')" id="nav-menu">Menü</button></li>
+            <li><button onclick="switchPage('about')" id="nav-about">Hakkımızda</button></li>
+            <li><button onclick="switchPage('contact')" id="nav-contact">İletişim</button></li>
         </ul>
     </nav>
 
-    <!-- Hero -->
-    <header id="home">
-        <h1>Mırra Kafe</h1>
-        <p>Geleneksel lezzetlerin modern dokunuşlarla buluştuğu, huzur dolu kahve durağınız.</p>
-        <a href="#menu" class="btn">Menüyü Keşfet</a>
-    </header>
+    <div class="page-container">
+        
+        <!-- ANA SAYFA -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Mırra Kafe Dünyası</h1>
+                <p>Geleneksel tütsülenmiş kahve aromaları, taze burgerler ve huzurlu bir atmosfer sizi bekliyor.</p>
+                <button class="btn" onclick="switchPage('menu')">Menüyü İncele</button>
+            </div>
+        </div>
 
-    <!-- Main Container / Menu -->
-    <div class="container" id="menu">
-        <h2 class="section-title">Özel Menümüz</h2>
+        <!-- MENÜ SAYFASI -->
+        <div id="menu" class="page">
+            <h2 class="section-title">Zengin Menümüz</h2>
+            
+            <div class="menu-tabs">
+                <button class="tab-btn active" onclick="switchCategory('sicak')">Sıcak İçecekler</button>
+                <button class="tab-btn" onclick="switchCategory('soguk')">Soğuk İçecekler</button>
+                <button class="tab-btn" onclick="switchCategory('tatli')">Tatlılar</button>
+                <button class="tab-btn" onclick="switchCategory('yemek')">Burger & Sandviç</button>
+            </div>
 
-        <!-- Kahveler -->
-        <div class="menu-category">
-            <h3><i class="fa-solid fa-coffee"></i> Kahve Çeşitleri</h3>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>Geleneksel Mırra</h4>
-                        <span class="price">75 ₺</span>
-                    </div>
-                    <p>Özel toprak cezvelerde saatlerce demlenen, yoğun ve otantik lezzet.</p>
+            <!-- Sıcak İçecekler -->
+            <div id="sicak" class="category-content active menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><h3>Geleneksel Mırra</h3><span class="price">75 ₺</span></div><p>Özel toprak cezvelerde saatlerce demlenen yoğun lezzet.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Türk Kahvesi</h3><span class="price">60 ₺</span></div><p>Bol köpüklü, taze çekilmiş geleneksel sunum.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Caffe Latte</h3><span class="price">90 ₺</span></div><p>Yumuşak espresso ve kadifemsi sıcak süt.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Filtre Kahve</h3><span class="price">70 ₺</span></div><p>Günün seçkin çekirdeklerinden günlük demleme.</p></div>
+            </div>
+
+            <!-- Soğuk İçecekler -->
+            <div id="soguk" class="category-content menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><h3>Iced Caramel Macchiato</h3><span class="price">100 ₺</span></div><p>Buz, karamel sos ve soğuk sütün muazzam uyumu.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Cold Brew</h3><span class="price">85 ₺</span></div><p>16 saat soğuk suyla demlenmiş özel yumuşak içim kahve.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Frambuazlı Soğuk Çay</h3><span class="price">70 ₺</span></div><p>Taze nane ve frambuaz taneleriyle ferahlatıcı lezzet.</p></div>
+            </div>
+
+            <!-- Tatlılar -->
+            <div id="tatli" class="category-content menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><h3>San Sebastian Cheesecake</h3><span class="price">115 ₺</span></div><p>İçi akışkan, Belçika çikolata sosu eşliğinde.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Mozaik Pasta</h3><span class="price">80 ₺</span></div><p>Ev yapımı anne eli değmişçesine enfes tatlı.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Tiramisu</h3><span class="price">95 ₺</span></div><p>İtalyan usulü yoğun mascarpone peynirli.</p></div>
+            </div>
+
+            <!-- Yemek (Burger & Sandviç) -->
+            <div id="yemek" class="category-content menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><h3>Mırra Special Burger</h3><span class="price">220 ₺</span></div><p>180gr dana burger köftesi, karamelize soğan, cheddar ve patates kızartması ile.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Tavuklu Crispy Sandviç</h3><span class="price">180 ₺</span></div><p>Çıtır pane tavuk, özel sos ve taze yeşillikler eşliğinde.</p></div>
+                <div class="menu-item"><div class="menu-item-header"><h3>Tatlı Ekşi Soslu Burger</h3><span class="price">210 ₺</span></div><p>Özel gurme soslu, mantarlı ve kaşarlı enfes lezzet.</p></div>
+            </div>
+        </div>
+
+        <!-- HAKKIMIZDA SAYFASI -->
+        <div id="about" class="page">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Mırra Kafe'nin Hikayesi</h2>
+                    <p>2026 yılında yola çıkan Mırra Kafe; sadece bir kahve dükkanı olmanın ötesinde, dostlukların, fikirlerin ve en önemlisi geleneksel tatların modern vizyonla harmanlandığı bir sığınak olarak kuruldu.</p>
+                    <p>Adını Mardin'in efsanevi acı ve yoğun kahvesi Mırra'dan alan mekanımız, köklerine bağlı kalırken dünyaya açılan kahve trendlerini de yakından takip ediyor.</p>
+                    <p>Usta baristalarımızın özenle seçtiği çekirdekler, şefimizin hazırladığı gurme burgerler ve sıcak iç mekân tasarımımızla sizleri ağırlamaktan gurur duyuyoruz.</p>
                 </div>
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>Özel Türk Kahvesi</h4>
-                        <span class="price">60 ₺</span>
-                    </div>
-                    <p>Bol köpüklü, taze çekilmiş geleneksel Türk kahvesi ikramı.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>Caramel Macchiato</h4>
-                        <span class="price">95 ₺</span>
-                    </div>
-                    <p>Espresso, vanilya aromalı süt ve karamel sosunun kusursuz dansı.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>Filtre Kahve</h4>
-                        <span class="price">70 ₺</span>
-                    </div>
-                    <p>Dünyanın seçkin çekirdeklerinden günlük taze demleme filtre kahve.</p>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Kafe İç Mekan">
                 </div>
             </div>
         </div>
 
-        <!-- Tatlılar -->
-        <div class="menu-category">
-            <h3><i class="fa-solid fa-cake-candles"></i> Tatlılar & Atıştırmalıklar</h3>
-            <div class="menu-grid">
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>San Sebastian Cheesecake</h4>
-                        <span class="price">110 ₺</span>
-                    </div>
-                    <p>İçi akışkan, özel çikolata sosu eşliğinde efsanevi lezzet.</p>
-                </div>
-                <div class="menu-card">
-                    <div class="menu-card-header">
-                        <h4>Ev Yapımı Kurabiye</h4>
-                        <span class="price">45 ₺</span>
-                    </div>
-                    <p>Bol çikolata parçacıklı, fırından yeni çıkmış taze kurabiye.</p>
-                </div>
+        <!-- İLETİŞİM SAYFASI -->
+        <div id="contact" class="page">
+            <div class="contact-box">
+                <h2>Bize Ulaşın</h2>
+                <p class="contact-info"><i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye (Beşiktaş Merkez)</p>
+                <p class="contact-info"><i class="fa-solid fa-phone"></i> +90 (212) 555 00 00</p>
+                <p class="contact-info"><i class="fa-solid fa-envelope"></i> bilgi@mirrakafe.com</p>
+                <p class="contact-info"><i class="fa-solid fa-clock"></i> Her Gün: 09:00 - 23:00</p>
             </div>
         </div>
+
     </div>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2 class="section-title" style="margin-bottom: 25px;">Hikayemiz</h2>
-            <p>Mırra Kafe; kahve tutkusunu geleneksel misafirperverlikle harmanlamak amacıyla kuruldu. Dünyanın dört bir yanından özenle seçtiğimiz çekirdekleri, ustalıkla kavurarak fincanınıza taşıyoruz.</p>
-            <p>Sadece bir kahve içme molası değil, aynı zamanda dostlukların pekiştiği, huzurlu ve samimi bir sığınak sunuyoruz.</p>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        </div>
-        <p><i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye</p>
-        <p style="margin-top: 15px;">&copy; 2026 Mırra Kafe. Tüm hakları saklıdır.</p>
+    <footer>
+        <p>&copy; 2026 Mırra Kafe. Tüm hakları saklıdır.</p>
     </footer>
 
+    <!-- Cool Sayfa Geçiş Scripti -->
+    <script>
+        function switchPage(pageId) {
+            // Tüm sayfaları gizle
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Seçilen sayfayı aç
+            document.getElementById(pageId).classList.add('active');
+
+            // Navbar butonlarının aktiflik durumunu ayarla
+            const navButtons = document.querySelectorAll('.nav-links button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+
+            window.scrollTo(0, 0);
+        }
+
+        function switchCategory(catId) {
+            // Menü kategorilerini değiştir
+            const cats = document.querySelectorAll('.category-content');
+            cats.forEach(c => c.classList.remove('active'));
+
+            document.getElementById(catId).classList.add('active');
+
+            // Tab butonlarının aktifliğini ayarla
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
