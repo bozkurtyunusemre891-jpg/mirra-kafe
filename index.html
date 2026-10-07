@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mırra Kafe - Butik Kahve Deneyimi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #fcf8f5;
+            color: #3b2f2f;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #5c4033;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        .menu-item h3 {
+            color: #6f4e37;
+            margin-bottom: 10px;
+        }
+        .price {
+            float: right;
+            font-weight: bold;
+            color: #b08d57;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #3b2f2f;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mırra Kafe</h1>
+        <p>Geleneksel lezzetler ve eşsiz kahve kokusu eşliğinde huzurlu bir mola...</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">En Özel Kahvelerimiz</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>Geleneksel Mırra <span class="price">75 ₺</span></h3>
+                <p>Özel toprak cezvelerde özenle hazırlanan, acı ve yoğun aromalı geleneksel kahve.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Türk Kahvesi <span class="price">60 ₺</span></h3>
+                <p>Bol köpüklü, taze çekilmiş çekirdeklerle geleneksel sunum.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Latte <span class="price">90 ₺</span></h3>
+                <p>Yumuşak espresso ve kadifemsi sütün kusursuz uyumu.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Filtre Kahve <span class="price">70 ₺</span></h3>
+                <p>Günün her saatine uygun, taze ve aromatik filtre kahve.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Mırra Kafe. Tüm hakları saklıdır.</p>
+    </footer>
+
+</body>
+</html>
