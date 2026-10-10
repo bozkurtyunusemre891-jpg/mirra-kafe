@@ -1,469 +1,433 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AUREUM — Güneşin kavurduğu çekirdekler, özenle demlenen anlar. Üçüncü nesil butik kahve atölyesi." />
-  <title>AUREUM — Üçüncü Nesil Kahve Atölyesi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            espresso: {
-              950: "#1A100C",
-              900: "#241610",
-              800: "#3A2418",
-              700: "#4A3224",
-              600: "#6B4632"
-            },
-            cream: {
-              50: "#FAF6F0",
-              100: "#F3EBE0",
-              200: "#E8D9C8",
-              300: "#D4C0A8"
-            },
-            gold: {
-              400: "#C9A36A",
-              500: "#B8894A",
-              600: "#9A6F38"
-            },
-            copper: "#B87333",
-            clay: "#8B5E3C"
-          },
-          fontFamily: {
-            serif: ["Cormorant Garamond", "Georgia", "serif"],
-            sans: ["Outfit", "system-ui", "sans-serif"]
-          },
-          letterSpacing: {
-            widest2: "0.28em"
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mırra Kafe - Premium Gurme Deneyimi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a120b;
+            --secondary: #4e3629;
+            --accent: #c5a059;
+            --bg-main: #f4fefe;
+            --card-bg: #ffffff;
+            --text-color: #2b2b2b;
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-      }
-    };
-  </script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    html { scroll-behavior: smooth; }
-    section { scroll-margin-top: 5.5rem; }
-    body { font-family: Outfit, system-ui, sans-serif; }
-    .font-serif { font-family: "Cormorant Garamond", Georgia, serif; }
-    .hero-overlay {
-      background:
-        linear-gradient(180deg, rgba(26,16,12,0.55) 0%, rgba(26,16,12,0.35) 40%, rgba(26,16,12,0.82) 100%);
-    }
-    #site-nav.scrolled {
-      background: rgba(26, 16, 12, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom-color: rgba(201, 163, 106, 0.22);
-    }
-    .gold-line {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #C9A36A, transparent);
-    }
-    .menu-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    .menu-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(26,16,12,0.12); }
-    .gallery-item img { transition: transform 0.7s ease; }
-    .gallery-item:hover img { transform: scale(1.06); }
-    .tab-btn.active {
-      background: #241610;
-      color: #FAF6F0;
-    }
-    [data-panel] { display: none; }
-    [data-panel].is-active { display: grid; }
-  </style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        Body {
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            Position: fixed;
+            Top: 0;
+            Left: 0;
+            Width: 100%;
+            Background: rgba(26, 18, 11, 0.95);
+            Backdrop-filter: blur(10px);
+            Display: flex;
+            Justify-content: space-between;
+            Align-items: center;
+            Padding: 20px 5%;
+            Z-index: 1000;
+            Box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            Color: var(--accent);
+            Font-size: 26px;
+            Font-weight: 700;
+            Letter-spacing: 2px;
+            Cursor: pointer;
+        }
+
+        .nav-links {
+            Display: flex;
+            Gap: 25px;
+        }
+
+        .nav-links button {
+            Background: none;
+            Border: none;
+            Color: #ffffff;
+            Font-size: 16px;
+            Cursor: pointer;
+            Position: relative;
+            Transition: var(--transition);
+            Padding: 5px 0;
+        }
+
+        .nav-links button::after {
+            Content: '';
+            Position: absolute;
+            Bottom: 0;
+            Left: 0;
+            Width: 0;
+            Height: 2px;
+            Background: var(--accent);
+            Transition: var(--transition);
+        }
+
+        .nav-links button:hover::after,
+        .nav-links button.active::after {
+            Width: 100%;
+        }
+
+        .nav-links button:hover,
+        .nav-links button.active {
+            Color: var(--accent);
+        }
+
+        /* Sayfa Yapısı (SPA Geçişleri için) */
+        .page {
+            Display: none;
+            Min-height: 100vh;
+            Padding: 140px 5% 80px 5%;
+            Animation: fadeIn 0.8s ease forwards;
+        }
+
+        .page.active {
+            Display: block;
+        }
+
+        @keyframes fadeIn {
+            From { opacity: 0; transform: translateY(20px); }
+            To { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Bölümü */
+        .hero {
+            Display: flex;
+            Align-items: center;
+            Justify-content: space-between;
+            Min-height: 75vh;
+            Gap: 50px;
+        }
+
+        .hero-content h1 {
+            Font-size: 52px;
+            Color: var(--primary);
+            Line-height: 1.2;
+            Margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            Color: var(--accent);
+        }
+
+        .hero-content p {
+            Font-size: 18px;
+            Color: #666;
+            Margin-bottom: 30px;
+            Line-height: 1.6;
+        }
+
+        .btn {
+            Background: var(--accent);
+            Color: var(--primary);
+            Padding: 14px 32px;
+            Border: none;
+            Border-radius: 30px;
+            Font-weight: 600;
+            Cursor: pointer;
+            Transition: var(--transition);
+            Text-transform: uppercase;
+            Letter-spacing: 1px;
+            Box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn:hover {
+            Background: var(--primary);
+            Color: #fff;
+            Transform: translateY(-3px);
+            Box-shadow: 0 8px 25px rgba(26, 18, 11, 0.4);
+        }
+
+        .hero-img {
+            Flex: 1;
+            Height: 450px;
+            Background: linear-gradient(135deg, var(--secondary), var(--primary));
+            Border-radius: 20px;
+            Display: flex;
+            Align-items: center;
+            Justify-content: center;
+            Color: var(--accent);
+            Font-size: 80px;
+            Box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Menü Sayfası Tasarımı */
+        .menu-header {
+            Text-align: center;
+            Margin-bottom: 50px;
+        }
+
+        .menu-header h2 {
+            Font-size: 40px;
+            Color: var(--primary);
+            Margin-bottom: 10px;
+        }
+
+        .menu-header p {
+            Color: #777;
+            Font-size: 16px;
+        }
+
+        .category-tabs {
+            Display: flex;
+            Justify-content: center;
+            Gap: 15px;
+            Flex-wrap: wrap;
+            Margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            Background: #fff;
+            Border: 2px solid #e0e0e0;
+            Padding: 10px 22px;
+            Border-radius: 25px;
+            Cursor: pointer;
+            Font-weight: 600;
+            Color: var(--primary);
+            Transition: var(--transition);
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            Background: var(--accent);
+            Border-color: var(--accent);
+            Color: var(--primary);
+            Transform: scale(1.05);
+        }
+
+        .category-content {
+            Display: none;
+        }
+
+        .category-content.active {
+            Display: grid;
+            Grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            Gap: 30px;
+            Animation: fadeIn 0.5s ease forwards;
+        }
+
+        .menu-item {
+            Background: var(--card-bg);
+            Border-radius: 15px;
+            Overflow: hidden;
+            Box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            Transition: var(--transition);
+            Border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .menu-item:hover {
+            Transform: translateY(-8px);
+            Box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .item-img {
+            Height: 200px;
+            Background: #e8e8e8;
+            Display: flex;
+            Align-items: center;
+            Justify-content: center;
+            Color: var(--secondary);
+            Font-size: 40px;
+        }
+
+        .item-details {
+            Padding: 20px;
+        }
+
+        .item-title {
+            Display: flex;
+            Justify-content: space-between;
+            Align-items: center;
+            Margin-bottom: 10px;
+        }
+
+        .item-title h3 {
+            Font-size: 18px;
+            Color: var(--primary);
+        }
+
+        .item-price {
+            Color: var(--accent);
+            Font-weight: 700;
+            Font-size: 18px;
+        }
+
+        .item-desc {
+            Color: #666;
+            Font-size: 14px;
+            Line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            Background: var(--primary);
+            Color: #fff;
+            Text-align: center;
+            Padding: 40px 5%;
+            Margin-top: 80px;
+        }
+
+        Footer p {
+            Color: #aaa;
+            Font-size: 14px;
+        }
+    </style>
 </head>
-<body class="bg-cream-50 text-espresso-800 antialiased">
-  <a href="#icerik" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-gold-400 focus:px-4 focus:py-2">İçeriğe geç</a>
+<body>
 
-  <header id="site-nav" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-500">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Ana menü">
-      <a href="#anasayfa" class="group flex items-center gap-3">
-        <span class="flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/60 text-gold-400">
-          <i data-lucide="coffee" class="h-5 w-5"></i>
-        </span>
-        <span class="font-serif text-2xl tracking-[0.22em] text-cream-50">AUREUM</span>
-      </a>
-
-      <ul class="hidden items-center gap-8 text-sm font-light tracking-wide text-cream-100/90 md:flex">
-        <li><a class="transition hover:text-gold-400" href="#hikaye">Hikaye</a></li>
-        <li><a class="transition hover:text-gold-400" href="#menu">Menü</a></li>
-        <li><a class="transition hover:text-gold-400" href="#galeri">Atmosfer</a></li>
-        <li><a class="transition hover:text-gold-400" href="#konum">Konum</a></li>
-      </ul>
-
-      <div class="hidden items-center gap-3 md:flex">
-        <a href="#menu" class="rounded-full border border-gold-400/70 px-5 py-2 text-xs tracking-widest text-cream-50 uppercase transition hover:bg-gold-400 hover:text-espresso-950">Menüyü İncele</a>
-        <a href="#konum" class="rounded-full bg-gold-400 px-5 py-2 text-xs tracking-widest text-espresso-950 uppercase transition hover:bg-cream-50">Bize Ulaşın</a>
-      </div>
-
-      <button id="menu-toggle" type="button" class="text-cream-50 md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menüyü aç">
-        <i data-lucide="menu" class="h-6 w-6"></i>
-      </button>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" onclick="switchPage('home')">MIRRA KAFE</div>
+        <div class="nav-links">
+            <button id="nav-home" class="active" onclick="switchPage('home')">Ana Sayfa</button>
+            <button id="nav-menu" onclick="switchPage('menu')">Gurme Menü</button>
+            <button id="nav-about" onclick="switchPage('about')">Hakkımızda</button>
+            <button id="nav-contact" onclick="switchPage('contact')">İletişim</button>
+        </div>
     </nav>
 
-    <div id="mobile-menu" class="hidden border-t border-gold-400/20 bg-espresso-950/96 px-5 py-6 backdrop-blur-xl md:hidden">
-      <ul class="flex flex-col gap-4 text-cream-100">
-        <li><a href="#hikaye">Hikaye</a></li>
-        <li><a href="#menu">Menü</a></li>
-        <li><a href="#galeri">Atmosfer</a></li>
-        <li><a href="#konum">Konum</a></li>
-      </ul>
-      <div class="mt-6 flex flex-col gap-3">
-        <a href="#menu" class="rounded-full border border-gold-400/70 px-5 py-3 text-center text-xs tracking-widest text-cream-50 uppercase">Menüyü İncele</a>
-        <a href="#konum" class="rounded-full bg-gold-400 px-5 py-3 text-center text-xs tracking-widest text-espresso-950 uppercase">Bize Ulaşın</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="icerik">
-    <section id="anasayfa" class="relative min-h-screen overflow-hidden">
-      <img
-        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=80"
-        alt="Buharlı espresso makinesi ve taze çekilmiş kahve"
-        class="absolute inset-0 h-full w-full object-cover"
-      />
-      <div class="hero-overlay absolute inset-0"></div>
-      <div class="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-6 pb-16 pt-28 text-center">
-        <p class="mb-5 text-[11px] uppercase tracking-[0.42em] text-gold-400">Üçüncü Nesil · Butik Atölye · İstanbul</p>
-        <h1 class="font-serif text-5xl font-medium leading-[1.1] text-cream-50 sm:text-6xl lg:text-7xl">
-          Güneşin kavurduğu çekirdekler,<br class="hidden sm:block" /> özenle demlenen anlar
-        </h1>
-        <div class="gold-line my-8 w-40"></div>
-        <p class="max-w-xl text-base font-light leading-relaxed text-cream-200/90 sm:text-lg">
-          Tek köken seçkiler, yavaş demleme ve loş bir ışık. AUREUM, kahveyi bir ritüele dönüştüren sakin bir sığınak.
-        </p>
-        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="#menu" class="rounded-full bg-gold-400 px-8 py-3.5 text-xs font-medium uppercase tracking-[0.22em] text-espresso-950 transition hover:bg-cream-50">Menüyü Keşfet</a>
-          <a href="#hikaye" class="rounded-full border border-cream-50/40 px-8 py-3.5 text-xs uppercase tracking-[0.22em] text-cream-50 transition hover:border-gold-400 hover:text-gold-400">Hikayemizi Oku</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="hikaye" class="bg-cream-50 py-24 lg:py-32">
-      <div class="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-2 lg:px-8">
-        <div class="relative">
-          <img
-            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80"
-            alt="Kavrulmuş kahve çekirdekleri"
-            class="h-[520px] w-full rounded-sm object-cover shadow-2xl shadow-espresso-900/20"
-          />
-          <aside class="absolute -bottom-8 right-6 max-w-[220px] border border-gold-400/40 bg-espresso-900 p-6 text-cream-50">
-            <p class="font-serif text-4xl text-gold-400">2019</p>
-            <p class="mt-2 text-xs uppercase tracking-[0.2em] text-cream-200/80">Cihangir’de ilk fincan</p>
-          </aside>
-        </div>
-        <article>
-          <p class="text-[11px] uppercase tracking-[0.35em] text-gold-500">Hakkımızda</p>
-          <h2 class="mt-3 font-serif text-4xl text-espresso-900 sm:text-5xl">Topraktan fincana, sessiz bir zanaat</h2>
-          <div class="gold-line my-6 w-24"></div>
-          <p class="text-[15px] font-light leading-8 text-espresso-700">
-            AUREUM, hızlı servisin gürültüsünden uzak; çekirdeğin karakterini dinleyen bir atölyedir. Etiyopya Yirgacheffe’nin jasmine notalarından Kolombiya Huila’nın kakao gövdesine kadar her lot, küçük partiler halinde kavrulur.
-          </p>
-          <p class="mt-5 text-[15px] font-light leading-8 text-espresso-700">
-            Meşe, keten ve bakırın sarıldığı salonumuzda zaman yavaşlar. Baristalarımız V60, Chemex ve espresso’yu aynı özenle demler; sohbetler kısık sesle, ışık loş, kahve ise nettir.
-          </p>
-          <ul class="mt-10 grid grid-cols-3 gap-4 text-center">
-            <li class="border border-cream-200 bg-cream-100/60 px-3 py-5">
-              <p class="font-serif text-3xl text-espresso-900">12</p>
-              <p class="mt-1 text-[10px] uppercase tracking-widest text-espresso-600">Tek köken lot</p>
-            </li>
-            <li class="border border-cream-200 bg-cream-100/60 px-3 py-5">
-              <p class="font-serif text-3xl text-espresso-900">92°</p>
-              <p class="mt-1 text-[10px] uppercase tracking-widest text-espresso-600">Hassas demleme</p>
-            </li>
-            <li class="border border-cream-200 bg-cream-100/60 px-3 py-5">
-              <p class="font-serif text-3xl text-espresso-900">24s</p>
-              <p class="mt-1 text-[10px] uppercase tracking-widest text-espresso-600">Dinlendirilmiş kavrum</p>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="menu" class="bg-cream-100 py-24 lg:py-32">
-      <div class="mx-auto max-w-6xl px-6 lg:px-8">
-        <header class="mx-auto max-w-2xl text-center">
-          <p class="text-[11px] uppercase tracking-[0.35em] text-gold-500">Öne Çıkan Menü</p>
-          <h2 class="mt-3 font-serif text-4xl text-espresso-900 sm:text-5xl">Günün seçkisi</h2>
-          <p class="mt-4 text-sm font-light text-espresso-600">Filtre, espresso, imza içecekler ve fırından çıkan tatlılar — sade, net, mevsimsel.</p>
-        </header>
-
-        <div class="mt-12 flex flex-wrap justify-center gap-2" role="tablist" aria-label="Menü kategorileri">
-          <button type="button" class="tab-btn active rounded-full px-5 py-2.5 text-xs uppercase tracking-widest text-espresso-700" data-tab="filtre" role="tab" aria-selected="true">Filtre</button>
-          <button type="button" class="tab-btn rounded-full px-5 py-2.5 text-xs uppercase tracking-widest text-espresso-700" data-tab="espresso" role="tab" aria-selected="false">Espresso</button>
-          <button type="button" class="tab-btn rounded-full px-5 py-2.5 text-xs uppercase tracking-widest text-espresso-700" data-tab="imza" role="tab" aria-selected="false">İmza</button>
-          <button type="button" class="tab-btn rounded-full px-5 py-2.5 text-xs uppercase tracking-widest text-espresso-700" data-tab="tatli" role="tab" aria-selected="false">Tatlılar</button>
-        </div>
-
-        <div class="mt-12">
-          <div data-panel="filtre" class="is-active gap-5 md:grid-cols-2">
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Yirgacheffe V60</h3>
-                <p class="text-sm text-gold-600">145 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Etiyopya, yıkanmış işlem. Yasemin, bergamot ve ipeksi gövde. 18 g / 280 ml.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Huila Chemex</h3>
-                <p class="text-sm text-gold-600">150 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Kolombiya. Kakao, kırmızı elma ve bal. Düz, temiz bir bitiş.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Nyeri Batch Brew</h3>
-                <p class="text-sm text-gold-600">120 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Kenya. Siyah frenk üzümü, bergamot ve canlı asidite. Günlük demleme.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Geisha Soğuk Demleme</h3>
-                <p class="text-sm text-gold-600">165 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">16 saat soğuk ekstraksiyon. Beyaz çiçek, şeftali ve ipeksi doku.</p>
-            </article>
-          </div>
-
-          <div data-panel="espresso" class="gap-5 md:grid-cols-2">
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Espresso</h3>
-                <p class="text-sm text-gold-600">95 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Ev harmanı. Koyu çikolata, fındık ve damla sakızı. 18 g / 36 g.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Macchiato</h3>
-                <p class="text-sm text-gold-600">110 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Tek shot, ipeksi bir kaşık süt köpüğü. Espressonun karakteri önde.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Flat White</h3>
-                <p class="text-sm text-gold-600">135 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Çift shot, kadifemsi mikro köpük. Yoğun ama dengeli.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Cortado</h3>
-                <p class="text-sm text-gold-600">125 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Eşit espresso ve ılık süt. Küçük fincan, büyük denge.</p>
-            </article>
-          </div>
-
-          <div data-panel="imza" class="gap-5 md:grid-cols-2">
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Bakır & Portakal</h3>
-                <p class="text-sm text-gold-600">175 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Espresso, kan portakalı, vanilya ve bakır cezvede ısıtılmış süt.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Amber Tonic</h3>
-                <p class="text-sm text-gold-600">160 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Soğuk demleme, bergamot toniği ve yaban mersini. Yazın imzası.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Kardamom Affogato</h3>
-                <p class="text-sm text-gold-600">185 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Vanilyalı dondurma, sıcak espresso ve taze çekilmiş kardamom.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Gül & Kakao Mocha</h3>
-                <p class="text-sm text-gold-600">170 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">%70 kakao, damla sakızı gülü ve ipeksi süt. Tatlı değil, aromatik.</p>
-            </article>
-          </div>
-
-          <div data-panel="tatli" class="gap-5 md:grid-cols-2">
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Fındıklı Financiers</h3>
-                <p class="text-sm text-gold-600">95 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Kavrulmuş fındık, kahverengi tereyağı. Espresso ile kusursuz eşleşme.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Tahinli Brownie</h3>
-                <p class="text-sm text-gold-600">110 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Yoğun kakao, Antep tahini ve deniz tuzu. Ilık servis.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Limonlu Olive Oil Cake</h3>
-                <p class="text-sm text-gold-600">105 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Soğuk sıkım zeytinyağı, limon kabuğu ve kekik. Filtre kahveye eşlik.</p>
-            </article>
-            <article class="menu-card border border-cream-200 bg-cream-50 p-7">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="font-serif text-2xl text-espresso-900">Hurmalı Cardamom Tart</h3>
-                <p class="text-sm text-gold-600">120 ₺</p>
-              </div>
-              <p class="mt-3 text-sm font-light leading-6 text-espresso-600">Medjool hurması, kardamom kreması ve badem tabanı.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="galeri" class="bg-espresso-950 py-24 lg:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <header class="mb-12 text-center">
-          <p class="text-[11px] uppercase tracking-[0.35em] text-gold-400">Atmosfer</p>
-          <h2 class="mt-3 font-serif text-4xl text-cream-50 sm:text-5xl">Işık, ahşap ve buhar</h2>
-        </header>
-        <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          <figure class="gallery-item col-span-2 overflow-hidden md:h-80">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1400&q=80" alt="Loş ışıklı kafe salonu" class="h-full w-full object-cover" />
-          </figure>
-          <figure class="gallery-item overflow-hidden md:h-80">
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Latte art" class="h-full w-full object-cover" />
-          </figure>
-          <figure class="gallery-item overflow-hidden md:h-80">
-            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80" alt="Pour-over demleme" class="h-full w-full object-cover" />
-          </figure>
-          <figure class="gallery-item overflow-hidden md:h-64">
-            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Espresso fincanı" class="h-full w-full object-cover" />
-          </figure>
-          <figure class="gallery-item overflow-hidden md:h-64">
-            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="Ev yapımı hamur işi" class="h-full w-full object-cover" />
-          </figure>
-          <figure class="gallery-item col-span-2 overflow-hidden md:h-64">
-            <img src="https://images.unsplash.com/photo-1442512597031-c2c90c55d1da?auto=format&fit=crop&w=1400&q=80" alt="Ahşap masada kahve molası" class="h-full w-full object-cover" />
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="konum" class="bg-cream-50 py-24 lg:py-32">
-      <div class="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:px-8">
-        <div>
-          <p class="text-[11px] uppercase tracking-[0.35em] text-gold-500">Çalışma Saatleri &amp; Konum</p>
-          <h2 class="mt-3 font-serif text-4xl text-espresso-900 sm:text-5xl">Kapımız her gün açık</h2>
-          <div class="gold-line my-6 w-24"></div>
-          <address class="not-italic">
-            <p class="flex items-start gap-3 text-espresso-700">
-              <i data-lucide="map-pin" class="mt-0.5 h-5 w-5 text-gold-500"></i>
-              Akyol Sokak No: 7, Cihangir<br />Beyoğlu / İstanbul
-            </p>
-            <p class="mt-4 flex items-center gap-3 text-espresso-700">
-              <i data-lucide="phone" class="h-5 w-5 text-gold-500"></i>
-              <a href="tel:+902122450190" class="hover:text-gold-600">+90 212 245 01 90</a>
-            </p>
-            <p class="mt-3 flex items-center gap-3 text-espresso-700">
-              <i data-lucide="mail" class="h-5 w-5 text-gold-500"></i>
-              <a href="mailto:selam@aureum.cafe" class="hover:text-gold-600">selam@aureum.cafe</a>
-            </p>
-          </address>
-          <dl class="mt-10 space-y-3 border-t border-cream-200 pt-8 text-sm">
-            <div class="flex justify-between">
-              <dt class="text-espresso-600">Pazartesi — Cuma</dt>
-              <dd class="text-espresso-900">08:00 — 20:00</dd>
+    <!-- Ana Sayfa -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Geleneksel Lezzet, <span>Modern Deneyim</span></h1>
+                <p>Mırra Kafe'de özenle kavrulmuş dünya kahveleri, taptaze gurme sandviçler ve eşsiz tatlılarla unutulmaz bir mola verin.</p>
+                <button class="btn" onclick="switchPage('menu')">Menüyü Keşfet</button>
             </div>
-            <div class="flex justify-between">
-              <dt class="text-espresso-600">Cumartesi</dt>
-              <dd class="text-espresso-900">09:00 — 21:00</dd>
+            <div class="hero-img">
+                <i class="fa-solid fa-mug-hot"></i>
             </div>
-            <div class="flex justify-between">
-              <dt class="text-espresso-600">Pazar</dt>
-              <dd class="text-espresso-900">10:00 — 19:00</dd>
-            </div>
-          </dl>
-          <div class="mt-8 flex gap-4">
-            <a href="https://instagram.com" class="flex h-11 w-11 items-center justify-center rounded-full border border-espresso-800/20 text-espresso-800 transition hover:border-gold-500 hover:text-gold-600" aria-label="Instagram">
-              <i data-lucide="instagram" class="h-5 w-5"></i>
-            </a>
-            <a href="https://x.com" class="flex h-11 w-11 items-center justify-center rounded-full border border-espresso-800/20 text-espresso-800 transition hover:border-gold-500 hover:text-gold-600" aria-label="X">
-              <i data-lucide="twitter" class="h-5 w-5"></i>
-            </a>
-            <a href="https://maps.google.com" class="flex h-11 w-11 items-center justify-center rounded-full border border-espresso-800/20 text-espresso-800 transition hover:border-gold-500 hover:text-gold-600" aria-label="Google Maps">
-              <i data-lucide="navigation" class="h-5 w-5"></i>
-            </a>
-          </div>
         </div>
-        <div class="min-h-[360px] overflow-hidden border border-cream-200 bg-cream-100">
-          <iframe
-            title="AUREUM Cihangir konum haritası"
-            class="h-full min-h-[360px] w-full grayscale contrast-125"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://maps.google.com/maps?q=Cihangir%20Beyo%C4%9Flu%20Istanbul&t=&z=15&ie=UTF8&iwloc=&output=embed"
-          ></iframe>
-        </div>
-      </div>
     </section>
-  </main>
 
-  <footer class="bg-espresso-950 py-12">
-    <div class="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 text-center">
-      <p class="font-serif text-xl tracking-[0.28em] text-gold-400">AUREUM</p>
-      <p class="text-xs font-light tracking-wide text-cream-300/70">© 2026 AUREUM Kahve Atölyesi. Tüm hakları saklıdır.</p>
-      <p class="font-serif italic text-cream-200/60">Bu şablon geleceğin işletmeleri için tasarlandı.</p>
-    </div>
-  </footer>
+    <!-- Menü Sayfası -->
+    <section id="menu" class="page">
+        <div class="menu-header">
+            <h2>Gurme Menümüz</h2>
+            <p>Damak tadınıza hitap eden özel lezzetlerimizi keşfedin</p>
+        </div>
 
-  <script>
-    lucide.createIcons();
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="switchCategory('cat-hot')">Sıcak Kahveler</button>
+            <button class="tab-btn" onclick="switchCategory('cat-cold')">Soğuk Kahveler</button>
+            <button class="tab-btn" onclick="switchCategory('cat-world')">Dünya Kahveleri</button>
+            <button class="tab-btn" onclick="switchCategory('cat-sandwiches')">Sandviç & Tost</button>
+            <button class="tab-btn" onclick="switchCategory('cat-burgers')">Mırra Özel Burger</button>
+            <button class="tab-btn" onclick="switchCategory('cat-desserts')">Tatlılar</button>
+        </div>
 
-    const nav = document.getElementById("site-nav");
-    const toggle = document.getElementById("menu-toggle");
-    const mobile = document.getElementById("mobile-menu");
+        <!-- Sıcak Kahveler -->
+        <div id="cat-hot" class="category-content active">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><div class="item-title"><h3>Espresso</h3><span class="item-price">85₺</span></div><p class="item-desc">Yoğun ve zengin aromalı geleneksel İtalyan espressosu.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><div class="item-title"><h3>Caffe Latte</h3><span class="item-price">110₺</span></div><p class="item-desc">Kadifemsi süt köpüğü ve yumuşak espresso uyumu.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><div class="item-title"><h3>Cappuccino</h3><span class="item-price">110₺</span></div><p class="item-desc">Bol köpüklü, dengeli espresso ve süt buluşması.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-mug-hot"></i></div><div class="item-details"><div class="item-title"><h3>Flat White</h3><span class="item-price">115₺</span></div><p class="item-desc">Çift shot espresso ve micro-foam süt dokusu.</p></div></div>
+        </div>
 
-    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+        <!-- Soğuk Kahveler -->
+        <div id="cat-cold" class="category-content">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><div class="item-title"><h3>Iced Latte</h3><span class="item-price">120₺</span></div><p class="item-desc">Buz ve soğuk sütün ferahlatıcı espresso ile dansı.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><div class="item-title"><h3>Cold Brew</h3><span class="item-price">125₺</span></div><p class="item-desc">18 saat boyunca soğuk suyla demlenen özel filtre kahve.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-glass-water"></i></div><div class="item-details"><div class="item-title"><h3>Iced Americano</h3><span class="item-price">110₺</span></div><p class="item-desc">Buz üzerinde taze çekilmiş espresso ve su ferahlığı.</p></div></div>
+        </div>
 
-    toggle.addEventListener("click", () => {
-      const open = mobile.classList.toggle("hidden") === false;
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
-    });
+        <!-- Dünya Kahveleri -->
+        <div id="cat-world" class="category-content">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-globe"></i></div><div class="item-details"><div class="item-title"><h3>Ethiopia Yirgacheffe</h3><span class="item-price">135₺</span></div><p class="item-desc">Çiçeksi ve narenciye notalarına sahip yöresel filtre kahve.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-globe"></i></div><div class="item-details"><div class="item-title"><h3>Colombia Supremo</h3><span class="item-price">130₺</span></div><p class="item-desc">Dengeli gövdesi, karamel ve çikolata aromalı filtre kahve.</p></div></div>
+        </div>
 
-    mobile.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobile.classList.add("hidden");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
+        <!-- Sandviç & Tost -->
+        <div id="cat-sandwiches" class="category-content">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-bread-slice"></i></div><div class="item-details"><div class="item-title"><h3>Kavurmalı Kaşarlı Tost</h3><span class="item-price">150₺</span></div><p class="item-desc">Özel ekşi mayalı ekmek arasında taze kaşar ve dana kavurma.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-bacon"></i></div><div class="item-details"><div class="item-title"><h3>Rozbifli Gurme Sandviç</h3><span class="item-price">185₺</span></div><p class="item-desc">İnce dilimlenmiş rozbif, roka, aioli sos ve parmesan parçacıkları.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-bread-slice"></i></div><div class="item-details"><div class="item-title"><h3>Pesto Soslu Tavuklu Sandviç</h3><span class="item-price">165₺</span></div><p class="item-desc">Izgara tavuk bonfile, ev yapımı pesto sos ve kurutulmuş domates.</p></div></div>
+        </div>
 
-    const tabs = document.querySelectorAll(".tab-btn");
-    const panels = document.querySelectorAll("[data-panel]");
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => {
-          t.classList.remove("active");
-          t.setAttribute("aria-selected", "false");
-        });
-        tab.classList.add("active");
-        tab.setAttribute("aria-selected", "true");
-        const id = tab.dataset.tab;
-        panels.forEach((panel) => {
-          panel.classList.toggle("is-active", panel.dataset.panel === id);
-        });
-      });
-    });
-  </script>
+        <!-- Mırra Özel Burger -->
+        <div id="cat-burgers" class="category-content">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-burger"></i></div><div class="item-details"><div class="item-title"><h3>Mırra Special Burger</h3><span class="item-price">260₺</span></div><p class="item-desc">200gr dana burger köftesi, karamelize soğan, cheddar ve özel sos.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-burger"></i></div><div class="item-details"><div class="item-title"><h3>Truffle Mantarlı Burger</h3><span class="item-price">280₺</span></div><p class="item-desc">Truffle mayonez, sotelenmiş mantar ve füme et eşliğinde.</p></div></div>
+        </div>
+
+        <!-- Tatlılar -->
+        <div id="cat-desserts" class="category-content">
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-cake-candles"></i></div><div class="item-details"><div class="item-title"><h3>San Sebastian Cheesecake</h3><span class="item-price">160₺</span></div><p class="item-desc">Akışkan kıvamı ve özel Belçika çikolata sosuyla.</p></div></div>
+            <div class="menu-item"><div class="item-img"><i class="fa-solid fa-cake-candles"></i></div><div class="item-details"><div class="item-title"><h3>Tiramisu</h3><span class="item-price">150₺</span></div><p class="item-desc">Geleneksel İtalyan reçetesiyle hazırlanan espresso aromalı tatlı.</p></div></div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Sayfası -->
+    <section id="about" class="page">
+        <div class="menu-header">
+            <h2>Hakkımızda</h2>
+            <p>Kahve tutkusunun gurme lezzetlerle buluştuğu nokta</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8; color: #555;">
+            <p>Mırra Kafe olarak, kahve çekirdeklerinin tarladan fincana uzanan yolculuğundaki her detaya özen gösteriyoruz. Misafirlerimize sadece bir kahve değil, aynı zamanda huzurlu ve estetik bir atmosfer sunmayı hedefliyoruz. En kaliteli malzemelerle hazırlanan gurme yiyeceklerimiz ve usta baristalarımızın ellerinden çıkan kahvelerimizle sizleri ağırlamaktan mutluluk duyuyoruz.</p>
+        </div>
+    </section>
+
+    <!-- İletişim Sayfası -->
+    <section id="contact" class="page">
+        <div class="menu-header">
+            <h2>İletişim</h2>
+            <p>Bizi ziyaret edin veya bizimle iletişime geçin</p>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center; line-height: 2; color: #555;">
+            <p><i class="fa-solid fa-location-dot" style="color:var(--accent); margin-right:8px;"></i> Moda Caddesi, Kadıköy / İstanbul</p>
+            <p><i class="fa-solid fa-phone" style="color:var(--accent); margin-right:8px;"></i> +90 (216) 555 00 00</p>
+            <p><i class="fa-solid fa-envelope" style="color:var(--accent); margin-right:8px;"></i> bilgi@mirrakafe.com</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mırra Kafe. Tüm hakları saklıdır. Tutkuyla tasarlandı.</p>
+    </footer>
+
+    <!-- Cool Sayfa Geçiş Scripti -->
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            document.getElementById(pageId).classList.add('active');
+
+            const navButtons = document.querySelectorAll('.nav-links button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchCategory(catId) {
+            const cats = document.querySelectorAll('.category-content');
+            cats.forEach(c => c.classList.remove('active'));
+
+            document.getElementById(catId).classList.add('active');
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
