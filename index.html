@@ -37,40 +37,43 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(15, 15, 17, 0.9);
+            background: rgba(15, 15, 17, 0.95);
             backdrop-filter: blur(12px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 6%;
+            padding: 20px 5%;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
             color: var(--accent);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: 2px;
             cursor: pointer;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
+            align-items: center;
         }
 
         .nav-links button {
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             position: relative;
             transition: var(--transition);
             padding: 5px 0;
+            white-space: nowrap;
         }
 
         .nav-links button::after {
@@ -97,7 +100,7 @@
         .page {
             display: none;
             min-height: 100vh;
-            padding: 140px 6% 80px 6%;
+            padding: 130px 5% 80px 5%;
             animation: fadeIn 0.6s ease forwards;
         }
 
@@ -116,14 +119,14 @@
             grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
             min-height: 75vh;
-            gap: 60px;
+            gap: 50px;
         }
 
         .hero-content h1 {
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             letter-spacing: -1px;
         }
 
@@ -132,20 +135,20 @@
         }
 
         .hero-content p {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.7;
         }
 
         .btn {
             background: var(--accent);
             color: #000;
-            padding: 15px 35px;
+            padding: 14px 30px;
             border: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: var(--transition);
             text-transform: uppercase;
@@ -161,11 +164,11 @@
 
         .hero-image-wrapper {
             position: relative;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             border: 1px solid var(--border-color);
-            height: 450px;
+            height: 420px;
         }
 
         .hero-image-wrapper img {
@@ -183,38 +186,39 @@
         /* Menü Bölümü */
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .section-header h2 {
-            font-size: 40px;
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             letter-spacing: -0.5px;
         }
 
         .section-header p {
             color: var(--text-muted);
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .category-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
 
         .tab-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 500;
             color: var(--text-muted);
             transition: var(--transition);
+            font-size: 14px;
         }
 
         .tab-btn:hover,
@@ -232,14 +236,14 @@
 
         .category-content.active {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             animation: fadeIn 0.5s ease forwards;
         }
 
         .menu-item {
             background: var(--bg-card);
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: var(--transition);
@@ -248,13 +252,13 @@
         }
 
         .menu-item:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: rgba(197, 160, 89, 0.4);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .item-img-container {
-            height: 220px;
+            height: 200px;
             overflow: hidden;
             position: relative;
         }
@@ -271,7 +275,7 @@
         }
 
         .item-details {
-            padding: 24px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -282,11 +286,11 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .item-title-price h3 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             color: var(--text-main);
         }
@@ -294,29 +298,29 @@
         .item-price {
             color: var(--accent);
             font-weight: 700;
-            font-size: 18px;
+            font-size: 17px;
         }
 
         .item-desc {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.5;
         }
 
-        /* Renkli ve Görsel Hakkımızda Alanı */
-        .about-grid {
+        /* Hakkımızda Alanı */
+        .about-grid, .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .about-card {
+        .about-card, .contact-card {
             position: relative;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            height: 380px;
+            height: 350px;
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
@@ -325,12 +329,12 @@
             transition: var(--transition);
         }
 
-        .about-card:hover {
-            transform: translateY(-6px);
+        .about-card:hover, .contact-card:hover {
+            transform: translateY(-5px);
             border-color: var(--accent);
         }
 
-        .about-card img {
+        .about-card img, .contact-card img {
             position: absolute;
             top: 0;
             left: 0;
@@ -341,103 +345,34 @@
             transition: var(--transition);
         }
 
-        .about-card:hover img {
+        .about-card:hover img, .contact-card:hover img {
             transform: scale(1.05);
             filter: brightness(0.75);
         }
 
-        .about-overlay {
+        .about-overlay, .contact-overlay {
             position: relative;
             z-index: 2;
-            padding: 35px;
+            padding: 30px;
             background: linear-gradient(to top, rgba(15,15,17,0.95) 20%, rgba(15,15,17,0.4) 80%, transparent);
         }
 
-        .about-overlay i {
-            font-size: 32px;
+        .about-overlay i, .contact-overlay i {
+            font-size: 28px;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        .about-overlay h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
+        .about-overlay h3, .contact-overlay h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
             font-weight: 700;
             color: #fff;
         }
 
-        .about-overlay p {
+        .about-overlay p, .contact-overlay p {
             color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Renkli ve Görsel İletişim Alanı */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .contact-card {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            height: 380px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transition: var(--transition);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent);
-        }
-
-        .contact-card img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.65);
-            transition: var(--transition);
-        }
-
-        .contact-card:hover img {
-            transform: scale(1.05);
-            filter: brightness(0.75);
-        }
-
-        .contact-overlay {
-            position: relative;
-            z-index: 2;
-            padding: 35px;
-            background: linear-gradient(to top, rgba(15,15,17,0.95) 20%, rgba(15,15,17,0.4) 80%, transparent);
-        }
-
-        .contact-overlay i {
-            font-size: 32px;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-
-        .contact-overlay h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .contact-overlay p {
-            color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
         }
 
@@ -446,13 +381,13 @@
             background: rgba(15, 15, 17, 0.95);
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 40px 6%;
-            margin-top: 100px;
+            padding: 30px 5%;
+            margin-top: 80px;
         }
 
         footer p {
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         @media (max-width: 768px) {
@@ -462,10 +397,13 @@
                 min-height: auto;
             }
             .hero-content h1 {
-                font-size: 38px;
+                font-size: 32px;
             }
             .nav-links {
-                display: none;
+                gap: 10px;
+            }
+            .nav-links button {
+                font-size: 12px;
             }
         }
     </style>
@@ -487,4 +425,160 @@
     <section id="home" class="page active">
         <div class="hero">
             <div class="hero-content">
-                <h1>Geleneksel Lezzet, <span>Modern Den
+                <h1>Geleneksel Lezzet, <span>Modern Deneyim</span></h1>
+                <p>Mırra Kafe'de özenle kavrulmuş dünya kahveleri, taptaze gurme sandviçler ve eşsiz tatlılarla zamansız bir mola verin.</p>
+                <button class="btn" onclick="switchPage('menu')">Menüyü Keşfet</button>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000&auto=format&fit=crop" alt="Coffee Shop">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menü Sayfası -->
+    <section id="menu" class="page">
+        <div class="section-header">
+            <h2>Gurme Menümüz</h2>
+            <p>Özenle seçilmiş çekirdekler ve taze malzemelerle hazırlanan geniş lezzet yelpazemiz</p>
+        </div>
+
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="switchCategory('cat-hot', this)">Sıcak Kahveler</button>
+            <button class="tab-btn" onclick="switchCategory('cat-cold', this)">Soğuk Kahveler</button>
+            <button class="tab-btn" onclick="switchCategory('cat-world', this)">Dünya Kahveleri</button>
+            <button class="tab-btn" onclick="switchCategory('cat-sandwiches', this)">Sandviç & Tost</button>
+            <button class="tab-btn" onclick="switchCategory('cat-burgers', this)">Özel Burger</button>
+            <button class="tab-btn" onclick="switchCategory('cat-desserts', this)">Tatlılar</button>
+        </div>
+
+        <!-- Sıcak Kahveler -->
+        <div id="cat-hot" class="category-content active">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=600&auto=format&fit=crop" alt="Espresso"></div><div class="item-details"><div class="item-title-price"><h3>Espresso</h3><span class="item-price">85₺</span></div><p class="item-desc">Yoğun ve zengin aromalı geleneksel İtalyan espressosu.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="Latte"></div><div class="item-details"><div class="item-title-price"><h3>Caffe Latte</h3><span class="item-price">110₺</span></div><p class="item-desc">Kadifemsi süt köpüğü ve yumuşak espresso uyumu.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop" alt="Cappuccino"></div><div class="item-details"><div class="item-title-price"><h3>Cappuccino</h3><span class="item-price">110₺</span></div><p class="item-desc">Bol köpüklü, dengeli espresso ve süt buluşması.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?q=80&w=600&auto=format&fit=crop" alt="Flat White"></div><div class="item-details"><div class="item-title-price"><h3>Flat White</h3><span class="item-price">115₺</span></div><p class="item-desc">Çift shot espresso ve micro-foam süt dokusu.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=600&auto=format&fit=crop" alt="Mocha"></div><div class="item-details"><div class="item-title-price"><h3>Caffe Mocha</h3><span class="item-price">130₺</span></div><p class="item-desc">Özel Belçika çikolatası, espresso ve sıcak sütün muazzam birleşimi.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=600&auto=format&fit=crop" alt="Americano"></div><div class="item-details"><div class="item-title-price"><h3>Americano</h3><span class="item-price">95₺</span></div><p class="item-desc">Sıcak su ile inceltilmiş zengin aromalı espresso.</p></div></div>
+        </div>
+
+        <!-- Soğuk Kahveler -->
+        <div id="cat-cold" class="category-content">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?q=80&w=600&auto=format&fit=crop" alt="Iced Latte"></div><div class="item-details"><div class="item-title-price"><h3>Iced Latte</h3><span class="item-price">120₺</span></div><p class="item-desc">Buz ve soğuk sütün ferahlatıcı espresso ile dansı.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=600&auto=format&fit=crop" alt="Cold Brew"></div><div class="item-details"><div class="item-title-price"><h3>Cold Brew</h3><span class="item-price">125₺</span></div><p class="item-desc">18 saat boyunca soğuk suyla demlenen özel filtre kahve.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600&auto=format&fit=crop" alt="Iced Americano"></div><div class="item-details"><div class="item-title-price"><h3>Iced Americano</h3><span class="item-price">110₺</span></div><p class="item-desc">Buz üzerinde taze çekilmiş espresso ve su ferahlığı.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1558857563-b371033873b8?q=80&w=600&auto=format&fit=crop" alt="Iced Mocha"></div><div class="item-details"><div class="item-title-price"><h3>Iced White Mocha</h3><span class="item-price">140₺</span></div><p class="item-desc">Beyaz çikolata, soğuk süt, buz ve espresso harikası.</p></div></div>
+        </div>
+
+        <!-- Dünya Kahveleri -->
+        <div id="cat-world" class="category-content">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600&auto=format&fit=crop" alt="Ethiopia"></div><div class="item-details"><div class="item-title-price"><h3>Ethiopia Yirgacheffe</h3><span class="item-price">135₺</span></div><p class="item-desc">Çiçeksi ve narenciye notalarına sahip yöresel filtre kahve.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600&auto=format&fit=crop" alt="Colombia"></div><div class="item-details"><div class="item-title-price"><h3>Colombia Supremo</h3><span class="item-price">130₺</span></div><p class="item-desc">Dengeli gövdesi, karamel ve çikolata aromalı filtre kahve.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1507133754655-27dcf926464f?q=80&w=600&auto=format&fit=crop" alt="Kenya"></div><div class="item-details"><div class="item-title-price"><h3>Kenya AA</h3><span class="item-price">145₺</span></div><p class="item-desc">Meyvemsi ve canlı asiditeye sahip özel çekirdek demlemesi.</p></div></div>
+        </div>
+
+        <!-- Sandviç & Tost -->
+        <div id="cat-sandwiches" class="category-content">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=600&auto=format&fit=crop" alt="Sandviç"></div><div class="item-details"><div class="item-title-price"><h3>Kavurmalı Kaşarlı Tost</h3><span class="item-price">150₺</span></div><p class="item-desc">Özel ekşi mayalı ekmek arasında taze kaşar ve dana kavurma.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=600&auto=format&fit=crop" alt="Rozbif"></div><div class="item-details"><div class="item-title-price"><h3>Rozbifli Gurme Sandviç</h3><span class="item-price">185₺</span></div><p class="item-desc">İnce dilimlenmiş rozbif, roka, aioli sos ve parmesan parçacıkları.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1539252554453-80ab65ce3586?q=80&w=600&auto=format&fit=crop" alt="Avokadolu Sandviç"></div><div class="item-details"><div class="item-title-price"><h3>Avokadolu Poşe Yumurtalı Sandviç</h3><span class="item-price">170₺</span></div><p class="item-desc">Kızarmış brioche ekmek üzerinde avokado ezmesi ve poşe yumurta.</p></div></div>
+        </div>
+
+        <!-- Özel Burger -->
+        <div id="cat-burgers" class="category-content">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop" alt="Burger"></div><div class="item-details"><div class="item-title-price"><h3>Mırra Special Burger</h3><span class="item-price">260₺</span></div><p class="item-desc">200gr dana burger köftesi, karamelize soğan, cheddar ve özel sos.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=600&auto=format&fit=crop" alt="Truffle Burger"></div><div class="item-details"><div class="item-title-price"><h3>Truffle Mantarlı Burger</h3><span class="item-price">290₺</span></div><p class="item-desc">Trüf mayonezli, sotelenmiş mantar ve füme etli gurme burger.</p></div></div>
+        </div>
+
+        <!-- Tatlılar -->
+        <div id="cat-desserts" class="category-content">
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=600&auto=format&fit=crop" alt="Cheesecake"></div><div class="item-details"><div class="item-title-price"><h3>San Sebastian Cheesecake</h3><span class="item-price">160₺</span></div><p class="item-desc">Akışkan kıvamı ve özel Belçika çikolata sosuyla.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=600&auto=format&fit=crop" alt="Tiramisu"></div><div class="item-details"><div class="item-title-price"><h3>Tiramisu</h3><span class="item-price">150₺</span></div><p class="item-desc">Geleneksel İtalyan reçetesiyle hazırlanan espresso aromalı tatlı.</p></div></div>
+            <div class="menu-item"><div class="item-img-container"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop" alt="Brownie"></div><div class="item-details"><div class="item-title-price"><h3>Ilık Çikolatalı Brownie</h3><span class="item-price">145₺</span></div><p class="item-desc">Yanında vanilyalı dondurma ile servis edilen yoğun kakaolu kek.</p></div></div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Sayfası -->
+    <section id="about" class="page">
+        <div class="section-header">
+            <h2>Hakkımızda</h2>
+            <p>Kahve tutkusunun gurme estetikle buluştuğu nokta</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop" alt="Çekirdek">
+                <div class="about-overlay">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Nitelikli Çekirdekler</h3>
+                    <p>Dünyanın en seçkin kahve tarlalarından özenle seçilen çekirdekleri ustalıkla kavuruyor, her fincanda eşsiz bir aroma sunuyoruz.</p>
+                </div>
+            </div>
+            <div class="about-card">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Atmosfer">
+                <div class="about-overlay">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h3>Gurme Deneyim & Atmosfer</h3>
+                    <p>Sadece bir kahve molası değil; sıcak mimarimiz, seçkin müziklerimiz ve taptaze atıştırmalıklarımızla ruhunuzu dinlendiren bir vaha.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Sayfası -->
+    <section id="contact" class="page">
+        <div class="section-header">
+            <h2>İletişim</h2>
+            <p>Bizi ziyaret edin veya bizimle iletişime geçin</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop" alt="Lokasyon">
+                <div class="contact-overlay">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Lokasyon & Adres</h3>
+                    <p>Moda Caddesi, No: 42/A<br>Kadıköy / İstanbul</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="İletişim">
+                <div class="contact-overlay">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <h3>Rezervasyon & Bilgi</h3>
+                    <p>+90 (216) 555 00 00<br>bilgi@mirrakafe.com<br>Her gün: 08:00 - 00:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mırra Kafe. Tüm hakları saklıdır. Designed with passion by aryu.core.</p>
+    </footer>
+
+    <!-- Sayfa Geçiş Scripti -->
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            document.getElementById(pageId).classList.add('active');
+
+            const navButtons = document.querySelectorAll('.nav-links button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchCategory(catId, btnElement) {
+            const cats = document.querySelectorAll('.category-content');
+            cats.forEach(c => c.classList.remove('active'));
+
+            document.getElementById(catId).classList.add('active');
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
